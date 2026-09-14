@@ -1,28 +1,28 @@
 @echo off
-:: rem Éú³ÉÊ±¼ä 2026-09-14 13:04:30 GMT
-:: ´úÀíÅäÖÃ
-:: Èç¹ûÄãÐèÒªÅäÖÃÒ»¸ö´úÀí·þÎñÆ÷£¬ÒÔ±ãÄÜ¹»Á¬½Óµ½ Internet£¬
-:: ÄÇÃ´Äã¿ÉÒÔÍ¨¹ýÅäÖÃ all_proxy »·¾³±äÁ¿À´ÊµÏÖ¡£
-:: Ä¬ÈÏÇé¿öÏÂ£¬´Ë±äÁ¿Îª¿Õ£¬¼´ÅäÖÃ aria2c ²»Ê¹ÓÃÈÎºÎ´úÀí¡£
+:: rem ç”Ÿæˆæ—¶é—´ 2026-09-14 13:04:30 GMT
+:: ä»£ç†é…ç½®
+:: å¦‚æžœä½ éœ€è¦é…ç½®ä¸€ä¸ªä»£ç†æœåŠ¡å™¨ï¼Œä»¥ä¾¿èƒ½å¤Ÿè¿žæŽ¥åˆ° Internetï¼Œ
+:: é‚£ä¹ˆä½ å¯ä»¥é€šè¿‡é…ç½® all_proxy çŽ¯å¢ƒå˜é‡æ¥å®žçŽ°ã€‚
+:: é»˜è®¤æƒ…å†µä¸‹ï¼Œæ­¤å˜é‡ä¸ºç©ºï¼Œå³é…ç½® aria2c ä¸ä½¿ç”¨ä»»ä½•ä»£ç†ã€‚
 ::
-:: ÓÃ·¨£ºset "all_proxy=proxy_address"
-:: Ê¾Àý£ºset "all_proxy=127.0.0.1:8888"
+:: ç”¨æ³•ï¼šset "all_proxy=proxy_address"
+:: ç¤ºä¾‹ï¼šset "all_proxy=127.0.0.1:8888"
 ::
-:: ÓÐ¹ØÈçºÎÊ¹ÓÃµÄ¸ü¶àÐÅÏ¢¿ÉÒÔÔÚÒÔÏÂÍøÕ¾ÕÒµ½£º
+:: æœ‰å…³å¦‚ä½•ä½¿ç”¨çš„æ›´å¤šä¿¡æ¯å¯ä»¥åœ¨ä»¥ä¸‹ç½‘ç«™æ‰¾åˆ°ï¼š
 :: https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-all-proxy
 :: https://aria2.github.io/manual/en/html/aria2c.html#environment
 
-:: È¡Ïû×¢ÊÍÒÔÏÂÐÐÒÔ¸²¸ÇÏµÍ³Ö¸¶¨µÄ´úÀíÉèÖÃ¡£
+:: å–æ¶ˆæ³¨é‡Šä»¥ä¸‹è¡Œä»¥è¦†ç›–ç³»ç»ŸæŒ‡å®šçš„ä»£ç†è®¾ç½®ã€‚
 :: 
 ::
 :: set "all_proxy="
 
-:: ´úÀíÅäÖÃ½áÊø
+:: ä»£ç†é…ç½®ç»“æŸ
 
 cd /d "%~dp0"
 if NOT "%cd%"=="%cd: =%" (
-    echo µ±Ç°Ä¿Â¼µÄÂ·¾¶ÖÐ°üº¬¿Õ¸ñ¡£
-    echo Çë½«Ä¿Â¼ÒÆ¶¯»òÖØÃüÃûÎª²»°üº¬¿Õ¸ñµÄÄ¿Â¼¡£
+    echo å½“å‰ç›®å½•çš„è·¯å¾„ä¸­åŒ…å«ç©ºæ ¼ã€‚
+    echo è¯·å°†ç›®å½•ç§»åŠ¨æˆ–é‡å‘½åä¸ºä¸åŒ…å«ç©ºæ ¼çš„ç›®å½•ã€‚
     echo.
     pause
     goto :EOF
@@ -40,7 +40,7 @@ powershell -NoProfile Start-Process -FilePath '%COMSPEC%' ^
 
 IF %ERRORLEVEL% GTR 0 (
     echo =====================================================
-    echo ´Ë½Å±¾ÐèÒªÒÔ¹ÜÀíÔ±Éí·ÝÖ´ÐÐ¡£
+    echo æ­¤è„šæœ¬éœ€è¦ä»¥ç®¡ç†å‘˜èº«ä»½æ‰§è¡Œã€‚
     echo =====================================================
     echo.
     pause
@@ -61,7 +61,7 @@ set "destDir=UUPs"
 powershell -NoProfile -ExecutionPolicy Unrestricted .\files\get_aria2.ps1 || (pause & exit /b 1)
 echo.
 
-echo ÕýÔÚÏÂÔØ UUP ×ª»»Æ÷...
+echo æ­£åœ¨ä¸‹è½½ UUP è½¬æ¢å™¨...
 "%aria2%" --no-conf --async-dns=false --console-log-level=warn --log-level=info --log="aria2_download.log" -x16 -s16 -j2 -c -R -d"files" -i"files\converter_windows"
 if %ERRORLEVEL% GTR 0 call :DOWNLOAD_CONVERTER_ERROR & exit /b 1
 echo.
@@ -71,32 +71,32 @@ if NOT EXIST CustomAppsList.txt goto :NO_FILE_ERROR
 if NOT EXIST %a7z% goto :NO_FILE_ERROR
 if NOT EXIST %uupConv% goto :NO_FILE_ERROR
 
-echo ÕýÔÚÌáÈ¡ UUP ×ª»»Æ÷...
+echo æ­£åœ¨æå– UUP è½¬æ¢å™¨...
 "%a7z%" -x!ConvertConfig.ini -x!CustomAppsList.txt -y x "%uupConv%" >NUL
 echo.
 
 :DOWNLOAD_APPS
-echo ÕýÔÚÏÂÔØ Microsoft Apps Ó¦ÓÃµÄ aria2 ½Å±¾...
+echo æ­£åœ¨ä¸‹è½½ Microsoft Apps åº”ç”¨çš„ aria2 è„šæœ¬...
 "%aria2%" --no-conf --async-dns=false --console-log-level=warn --log-level=info --log="aria2_download.log" -o"%aria2Script%" --allow-overwrite=true --auto-file-renaming=false "https://uupdump.cn/get.php?id=dd0767c2-7117-410a-a599-71f794ea0b12&pack=neutral&edition=app&aria2=2&expires=1789563870&token=3b5458a0a2472e9015ffceb3a31c2959fbb63291bc0a249ba97a94f26c2488b6"
 if %ERRORLEVEL% GTR 0 call :DOWNLOAD_ERROR & exit /b 1
 echo.
 
 for /F "tokens=2 delims=:" %%i in ('findstr #UUPDUMP_ERROR: "%aria2Script%"') do set DETECTED_ERROR=%%i
 if NOT [%DETECTED_ERROR%] == [] (
-    echo ÎÞ·¨´Ó Windows ¸üÐÂ·þÎñÆ÷¼ìË÷Êý¾Ý¡£Ô­Òò£º %DETECTED_ERROR%
-    echo Èç¹û¸ÃÎÊÌâÈÔÈ»´æÔÚ£¬ºÜ¿ÉÄÜÊÇÄú³¢ÊÔÏÂÔØµÄÌ×¼þÒÑ´Ó Windows ¸üÐÂ·þÎñÆ÷ÖÐÉ¾³ý¡£
+    echo æ— æ³•ä»Ž Windows æ›´æ–°æœåŠ¡å™¨æ£€ç´¢æ•°æ®ã€‚åŽŸå› ï¼š %DETECTED_ERROR%
+    echo å¦‚æžœè¯¥é—®é¢˜ä»ç„¶å­˜åœ¨ï¼Œå¾ˆå¯èƒ½æ˜¯æ‚¨å°è¯•ä¸‹è½½çš„å¥—ä»¶å·²ä»Ž Windows æ›´æ–°æœåŠ¡å™¨ä¸­åˆ é™¤ã€‚
     echo.
     pause
     goto :EOF
 )
 
-echo ÕýÔÚÏÂÔØ Microsoft Apps Ó¦ÓÃ...
+echo æ­£åœ¨ä¸‹è½½ Microsoft Apps åº”ç”¨...
 "%aria2%" --no-conf --async-dns=false --console-log-level=warn --log-level=info --log="aria2_download.log" -x16 -s16 -j25 -c -R -d"%destDir%" -i"%aria2Script%"
 if %ERRORLEVEL% GTR 0 goto :DOWNLOAD_APPS
 echo.
 
 :DOWNLOAD_UUPS
-echo ÕýÔÚÏÂÔØ UUP ÎÄ¼þµÄ aria2 ½Å±¾...
+echo æ­£åœ¨ä¸‹è½½ UUP æ–‡ä»¶çš„ aria2 è„šæœ¬...
 "%aria2%" --no-conf --async-dns=false --console-log-level=warn --log-level=info --log="aria2_download.log" -o"%aria2Script%" --allow-overwrite=true --auto-file-renaming=false "https://uupdump.cn/get.php?id=dd0767c2-7117-410a-a599-71f794ea0b12&pack=zh-cn&edition=professional&aria2=2&expires=1789563870&token=93412af0589fde6d1d3b6087beaf48d514b6976ada6eece8309e3324a8fbb4a4"
 if %ERRORLEVEL% GTR 0 call :DOWNLOAD_ERROR & exit /b 1
 echo.
@@ -110,7 +110,7 @@ if NOT [%DETECTED_ERROR%] == [] (
     goto :EOF
 )
 
-echo ÕýÔÚÏÂÔØ UUP ÎÄ¼þ...
+echo æ­£åœ¨ä¸‹è½½ UUP æ–‡ä»¶...
 "%aria2%" --no-conf --async-dns=false --console-log-level=warn --log-level=info --log="aria2_download.log" -x16 -s16 -j25 -c -R -d"%destDir%" -i"%aria2Script%"
 if %ERRORLEVEL% GTR 0 goto :DOWNLOAD_UUPS & exit /b 1
 
@@ -123,13 +123,13 @@ call convert-UUP.cmd
 goto :EOF
 
 :NO_FILE_ERROR
-echo ÎÒÃÇÕÒ²»µ½´Ë½Å±¾ËùÐèµÄÎÄ¼þÖ®Ò».
+echo æˆ‘ä»¬æ‰¾ä¸åˆ°æ­¤è„šæœ¬æ‰€éœ€çš„æ–‡ä»¶ä¹‹ä¸€.
 pause
 goto :EOF
 
 :DOWNLOAD_CONVERTER_ERROR
 echo.
-echo ÏÂÔØ UUP ×ª»»Æ÷Ê±·¢Éú´íÎó¡£
+echo ä¸‹è½½ UUP è½¬æ¢å™¨æ—¶å‘ç”Ÿé”™è¯¯ã€‚
 pause
 goto :EOF
 
@@ -138,16 +138,16 @@ findstr /C:"status=403" "aria2_download.log" >nul 2>&1
 if not errorlevel 1 (
     echo.
     echo ================================================
-    echo ÏÂÔØÁîÅÆÒÑ¹ýÆÚ¡¢ÎÞÐ§»ò±»ÐÞ¸Ä¡£
-    echo Çë·µ»Ø https://uupdump.cn/ ÖØÐÂÉú³ÉÏÂÔØ°ü¡£
-    echo ÒÑ¾­ÏÂÔØÍê³ÉµÄÎÄ¼þ¿ÉÒÔ±£Áô£¬ÎÞÐèÖØÐÂÏÂÔØ¡£
+    echo ä¸‹è½½ä»¤ç‰Œå·²è¿‡æœŸã€æ— æ•ˆæˆ–è¢«ä¿®æ”¹ã€‚
+    echo è¯·è¿”å›ž https://uupdump.cn/ é‡æ–°ç”Ÿæˆä¸‹è½½åŒ…ã€‚
+    echo å·²ç»ä¸‹è½½å®Œæˆçš„æ–‡ä»¶å¯ä»¥ä¿ç•™ï¼Œæ— éœ€é‡æ–°ä¸‹è½½ã€‚
     echo ================================================
     echo.
     pause
     goto :EOF
 )
 echo.
-echo ÎÒÃÇÓöµ½ÁËÒ»¸ö´íÎó while downloading files.
+echo æˆ‘ä»¬é‡åˆ°äº†ä¸€ä¸ªé”™è¯¯ while downloading files.
 pause
 goto :EOF
 
